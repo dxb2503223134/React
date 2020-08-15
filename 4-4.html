@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/browser.js"></script>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        class Parent extends React.Component
+        {
+            constructor(...args)
+            {
+                super(...args);
+            }
+            render()
+            {
+                var users=[
+                    {id:1,name:"blue",age:18},
+                    {id:2,name:"red",age:19},
+                    {id:3,name:"green",age:20}
+                ];
+                return(
+                    <ul>
+                        {users.map(user=>
+                            <Child key={user.id} name={user.name} age={user.age}/>
+                        )}
+                    </ul>
+                );
+            }
+        }
+
+        class Child extends React.Component
+        {
+            constructor(...args)
+            {
+                super(...args);
+            }
+            render()
+            {
+                return(
+                    <li>
+                        Id:{this.props.id}
+                        姓名:{this.props.name}<br/>
+                        年龄:{this.props.age}
+                    </li>
+                );
+            }
+        }
+
+        ReactDOM.render(<Parent/>,document.getElementById("root"));
+    </script>
+</body>
+</html>
