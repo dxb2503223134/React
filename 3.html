@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script src="js/browser.js" charset="utf-8"></script>
+    <script src="js/react.js" charset="utf-8"></script>
+    <script src="js/react-dom.js" charset="utf-8"></script>
+
+    <div id="div1"></div>
+
+    <br/>
+
+    <script type="text/babel">
+    let oDiv=document.getElementById('div1');
+
+    ReactDOM.render(
+      <div>
+        <label htmlFor="username">姓名：</label>
+        <input id="username" type="text" />
+      </div>
+    , oDiv);
+    </script>
+  </body>
+</html>

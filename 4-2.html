@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/browser.js"></script>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Cmp1 extends React.Component
+        {
+            constructor(...args)
+            {
+                super(...args);
+            }
+
+            render()
+            {
+
+            //    var arr=[
+            //        <div key={1}>aaa</div>,
+            //        <div key={2}>bbb</div>,
+            //        <div key={3}>ccc</div>
+            //    ];
+
+            //插入数组需要key
+            //为什么单个插入不需要key
+            //单个插入依据什么追踪?
+            // var div1=<div>aaa</div>;
+            // var div2=<div>bbb</div>;
+            // var div3=<div>ccc</div>;
+
+            var arr=[12,5,8];
+            var aDiv=[];
+
+            for(var i=0;i<arr.length;i++)
+            {
+                aDiv[i]=<div key={i}>{arr[i]}</div>
+            }
+
+                return(
+                    <div>
+                        组件2
+                        {aDiv}
+                    </div>
+                );
+            }
+        }
+
+        var a=<Cmp1/>;
+
+        ReactDOM.render((
+            <div>
+            Hello
+            {a}
+            </div>
+        ),
+        document.getElementById("root"));
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/browser.js"></script>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Cmp1 extends React.Component
+        {
+            constructor(...args)
+            {
+                super(...args);
+            }
+
+            render()
+            {
+                var span=<span>spannnn</span>
+                return(
+                    <div>
+                        组件1
+                        {span}
+                    </div>
+                );
+            }
+        }
+
+        var a=<Cmp1/>;
+
+        ReactDOM.render((
+            <div>
+            Hello
+            {a}
+            </div>
+        ),
+        document.getElementById("root"));
+    </script>
+</body>
+</html>

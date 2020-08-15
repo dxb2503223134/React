@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/browser.js"></script>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+    //写组件
+    class Cmp1 extends React.Component
+    {
+        constructor(...args) {super(...args);}
+        render()
+        {
+            return(
+                <div>
+                    <span style={{color:'red'}}>问题</span>
+                </div>
+            );
+        }
+    }
+
+    //用组件
+    var root =document.getElementById('root');
+    ReactDOM.render(<Cmp1 name={'hello'} age={18}/>,root);
+
+    </script>
+</body>
+
+</html>

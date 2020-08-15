@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/browser.js"></script>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+    //写组件
+    class Cmp1 extends React.Component
+    {
+        constructor(...args)
+        {
+            super(...args);
+            this.a=12;
+        }
+
+        fn()
+        {
+            return 55+88;
+        }
+
+        render()
+        {
+            // var a=12;
+            // var name='duan';
+            // var age=18;
+            var url='https://www.zhinengshe.com/imgs/82f3f2016fd38a5d0018a3ff70f3f630.png';
+            return <div>
+                hello world {this.fn()}
+                <img src={url}/>
+            </div>
+        }
+    }
+
+    //用组件
+    var root =document.getElementById('root');
+
+    ReactDOM.render(<Cmp1/>,root);
+
+    </script>
+</body>
+
+</html>
