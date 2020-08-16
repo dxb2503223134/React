@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script src="js/browser.js"></script>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+
+    <script type="text/babel">
+
+        class Parent extends React.Component
+        {
+            constructor(...args)
+            {
+                super(...args);
+
+                this.Number=0;
+            }
+
+            fn()
+            {
+                this.Number++;
+
+                //强制重新渲染
+                this.forceUpdate();
+            }
+
+            render()
+            {
+                console.log(this);
+                return (
+                    <div>
+                        {this.Number}<input type="button" value="+1" onClick={this.fn.bind(this)}/>
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<Parent/>,document.getElementById('root'));
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script src="js/browser.js"></script>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+
+    <script type="text/babel">
+
+        class Parent extends React.Component
+        {
+            constructor(...args)
+            {
+                super(...args);
+
+                //这样定义属性?
+                //this.prop.a .prop就代表传入参数?
+                //this.a=12;          //?
+
+                this.state={
+                    a:12,
+                };
+            }
+
+            //属性必须在哪里生成?
+            // this.b=13;
+
+            fn()
+            {
+                //alert(this);
+                //console.log(this);
+                //this.a++;
+                //this.state.a++;
+                this.setState({
+                    a:this.state.a+1,
+                });
+                //console.log(this);
+                //console.log(this.a);
+
+                //React this.props.a props属性制度
+            }
+
+            //调用方法不需要this.fn()?
+            //有参数怎么办?
+
+            render()
+            {
+                //返回元素有且只有一个根
+                return (
+                    <div>
+                        父组件<input type="button" value="+1" onClick={this.fn.bind(this)}/>
+                        <Childe a={this.state.a}/>
+                    </div>
+                );
+            }
+        }
+
+        class Childe extends React.Component
+        {
+            constructor(...args)
+            {
+                super(...args);
+            }
+            render()
+            {
+                console.log('渲染');
+                return (
+                    <div>子组件{this.props.a}</div>
+                );
+            }
+        }
+
+        ReactDOM.render(<Parent/>,document.getElementById('root'));
+
+    </script>
+
+</body>
+</html>

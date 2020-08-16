@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="js/browser.js"></script>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+
+    <script type="text/babel">
+
+        class Cmp1 extends React.Component {
+            constructor(...args) {
+                super(...args);
+
+                console.log('constructor:构造函数');
+
+                this.state = {
+                    number: 0
+                }
+            }
+
+            fn() {
+                this.setState({
+                    number: this.state.number + 1
+                })
+            }
+
+            componentDidMount() {
+                console.log('didMount:渲染完成');
+            }
+
+            componentDidUpdate() {
+                console.log('didUpdate:更新完成');
+            }
+
+            render() {
+                console.log('render:渲染');
+                return (
+                    <div>
+                        <input type="button" value="Go" onClick={this.fn.bind(this)} />
+                        Hello{this.state.number}
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<Cmp1 />, document.getElementById('root'));
+
+    </script>
+
+</body>
+
+</html>
