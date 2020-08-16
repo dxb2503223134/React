@@ -16,52 +16,84 @@
 
     <script type="text/babel">
 
-        class Cmp1 extends React.Component {
+        class Parent extends React.Component {
             constructor(...args) {
                 super(...args);
 
-                console.log('constructor:构造函数');
-
                 this.state = {
-                    number: 0
+                    id: 1
                 }
             }
 
-            fn() {
+            next() {
                 this.setState({
-                    number: this.state.number + 1
-                })
-            }
-
-            shouldComponentUpdate(nextProps,nextState) {
-                if (this.state.number % 3 == 0) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            }
-
-            componentDidMount() {
-                console.log('didMount:渲染完成');
-            }
-
-            componentDidUpdate() {
-                console.log('didUpdate:更新完成');
+                    id: this.state.id + 1
+                });
             }
 
             render() {
-                console.log('render:渲染');
                 return (
                     <div>
-                        <input type="button" value="Go" onClick={this.fn.bind(this)} />
-                        Hello{this.state.number}
+                        <input type="button" value="下一个" onClick={this.next.bind(this)} />
+                        <Child id={this.state.id} />
                     </div>
                 );
             }
         }
 
-        ReactDOM.render(<Cmp1 />, document.getElementById('root'));
+        class Child extends React.Component {
+            constructor(...args) {
+                super(...args);
+
+                // this.state = {
+                //     name='',
+                //     age=''
+                // }
+            }
+
+            shouldComponentUpdate(nextProps, nextState) {
+                return true;
+            }
+
+            loadData(id) {
+                //`表示什么?
+                fetch(`data/data${id}.txt`).then(res => {
+                    res.json().then(data => {
+                        this.setState(data);
+                    });
+                });
+            }
+
+            //Js所有读取文件都是异步的?
+            //访问接口获得数据也是异步的?
+            //异步操作变同步?
+            //JSX只兼容ES6?;不兼容ES789?
+            //所以JSX无法使用async?
+
+            componentDidMount() {
+                console.log('初始', this.props.id);
+
+                this.loadData(this.props.id);
+            }
+
+            componentDidUpdate() {
+                console.log('更新', this.props.id);
+
+                this.loadData(this.props.id);
+            }
+
+            render() {
+                console.log('渲染ing');
+                return (
+                    <div>
+                        ID:{this.props.id}
+                        用户名:xxx, 年龄:xxx
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<Parent />, document.getElementById('root'));
 
     </script>
 
