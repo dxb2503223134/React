@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="js/browser.js"></script>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+
+    <script type="text/babel">
+
+        class Parent extends React.Component {
+            constructor(...args) {
+                super(...args);
+
+                this.state = {
+                    b: true
+                }
+            }
+            fn() {
+                this.setState({
+                    b: !this.state.b
+                })
+            }
+            render() {
+                return (
+                    <div>
+                        <input type="button" value="有/没有" onClick={this.fn.bind(this)} />
+                        {this.state.b ? (<Child />) : ('')}
+                    </div>
+                );
+            }
+        }
+
+        class Child extends React.Component {
+            constructor(...args) {
+                super(...args);
+            }
+            componentDidMount() {
+                console.log("mount");
+            }
+            componentWillUnmount() {
+                console.log("unmount");
+            }
+            render() {
+                return (
+                    <div>Hello</div>
+                );
+            }
+        }
+
+        ReactDOM.render(<Parent />, document.getElementById('root'));
+
+    </script>
+
+</body>
+
+</html>

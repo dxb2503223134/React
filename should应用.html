@@ -21,7 +21,7 @@
                 super(...args);
 
                 this.state = {
-                    id: 1
+                    id: 0
                 }
             }
 
@@ -45,14 +45,18 @@
             constructor(...args) {
                 super(...args);
 
-                // this.state = {
-                //     name='',
-                //     age=''
-                // }
+                this.state = {
+                    name: '',
+                    age: ''
+                }
             }
 
             shouldComponentUpdate(nextProps, nextState) {
-                return true;
+                //console.log(nextProps,nextState);
+                return (
+                    nextProps.id != this.props.id ||
+                    nextState.name != this.state.name
+                );
             }
 
             loadData(id) {
@@ -72,13 +76,11 @@
 
             componentDidMount() {
                 console.log('初始', this.props.id);
-
                 this.loadData(this.props.id);
             }
 
             componentDidUpdate() {
                 console.log('更新', this.props.id);
-
                 this.loadData(this.props.id);
             }
 
@@ -87,7 +89,7 @@
                 return (
                     <div>
                         ID:{this.props.id}
-                        用户名:xxx, 年龄:xxx
+                        用户名:{this.state.name}, 年龄:{this.state.age}
                     </div>
                 );
             }
